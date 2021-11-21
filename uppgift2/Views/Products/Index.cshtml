@@ -1,0 +1,61 @@
+﻿@model IEnumerable<uppgift2.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-5">Best Sellers</h1>
+@Html.ActionLink("Create Product", "Create")
+
+
+<div class="container mt-5">
+
+    <!--Section: Content-->
+    <section class="dark-grey-text text-center">
+
+        <!-- Grid row -->
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <!-- Grid column -->
+                <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+                    <!-- Card -->
+                    <div class="card align-items-center">
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="card-img-top"
+                                 alt="">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <!-- Card image -->
+                        <!-- Card content -->
+                        <div class="card-body text-center">
+                            <!-- Category & Title -->
+                            <p class="grey-text">
+                                <h6>@Html.DisplayFor(modelItem => item.SubCategory.Name) > @Html.DisplayFor(modelItem => item.SubCategory.Category.Name)</h6>
+                            </p>
+                            <h5 class="mb-3">
+                                <strong>
+                                    @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                                </strong>
+                            </h5>
+                            <h5 class="font-weight-bold blue-text mb-0">
+                                <strong>$@Html.DisplayFor(modelItem => item.Price)</strong>
+                            </h5>
+                        </div>
+                        <!-- Card content -->
+                    </div>
+                    <!-- Card -->
+                </div>
+                <!-- Grid column -->
+            }
+        </div>
+        <!-- Grid row -->
+
+    </section>
+    <!--Section: Content-->
+
+</div>
